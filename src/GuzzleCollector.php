@@ -2,6 +2,7 @@
 
 namespace SamuelBednarcik\ElasticAPMAgent\Collectors\Guzzle;
 
+use GuzzleHttp\Promise\Promise;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SamuelBednarcik\ElasticAPMAgent\CollectorInterface;
@@ -70,6 +71,7 @@ class GuzzleCollector implements CollectorInterface
             $call['name'] = $request->getMethod() . ' ' . $request->getUri();
             $call['start'] = microtime(true) * 1000000;
 
+            /** @var Promise $promise */
             $promise = $handler($request, $options);
 
             return $promise->then(
