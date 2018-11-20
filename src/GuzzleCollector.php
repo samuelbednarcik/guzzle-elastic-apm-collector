@@ -21,7 +21,6 @@ class GuzzleCollector implements CollectorInterface
      */
     public function getSpans(): array
     {
-        dump($this);
         return $this->createSpans();
     }
 
