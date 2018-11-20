@@ -10,7 +10,7 @@ use SamuelBednarcik\ElasticAPMAgent\Events\Span;
 
 class GuzzleCollector implements CollectorInterface
 {
-    const SPAN_TYPE = 'guzzle.request';
+    const SPAN_TYPE = 'guzzle';
 
     /**
      * @var array
@@ -59,6 +59,21 @@ class GuzzleCollector implements CollectorInterface
     }
 
     /**
+     * @param RequestInterface $request
+     * @return string
+     */
+    private function createSpanNameFromRequest(RequestInterface $request): string
+    {
+        return sprintf(
+            "%s://%s:%s%s",
+            $request->getUri()->getScheme(),
+            $request->getUri()->getHost(),
+            !empty($request->getUri()->getPort()) ? $request->getUri()->getPort() : '<none>',
+            $request->getUri()->getPath()
+        );
+    }
+
+    /**
      * Guzzle middleware for profiling requests
      * @param callable $handler
      * @return \Closure
@@ -68,7 +83,7 @@ class GuzzleCollector implements CollectorInterface
         $call = [];
 
         return function (RequestInterface $request, array $options) use ($handler, $call) {
-            $call['name'] = $request->getMethod() . ' ' . $request->getUri();
+            $call['name'] = $this->createSpanNameFromRequest($request);
             $call['start'] = microtime(true) * 1000000;
 
             /** @var Promise $promise */
