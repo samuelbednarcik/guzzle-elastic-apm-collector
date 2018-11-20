@@ -10,7 +10,7 @@ use SamuelBednarcik\ElasticAPMAgent\Events\Span;
 
 class GuzzleCollector implements CollectorInterface
 {
-    const SPAN_TYPE = 'guzzle';
+    const SPAN_TYPE = 'ext';
 
     /**
      * @var array
