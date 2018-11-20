@@ -1,0 +1,20 @@
+{
+    "name": "samuelbednarcik/guzzle-elastic-apm-collector",
+    "description": "Elastic APM span collector for Guzzle",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Bednarcik",
+            "email": "bednarciks@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SamuelBednarcik\\ElasticAPMAgent\\Collectors\\Guzzle": "src/"
+        }
+    },
+}
