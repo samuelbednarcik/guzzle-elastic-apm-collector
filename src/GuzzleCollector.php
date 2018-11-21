@@ -36,7 +36,7 @@ class GuzzleCollector implements CollectorInterface
         foreach ($this->calls as $call) {
             $span = new Span();
             $span->setName($call['name']);
-            $span->setTimestamp($call['start']);
+            $span->setTimestamp(intval(round($call['start'])));
             $span->setType(self::SPAN_TYPE);
             $span->setDuration($this->calculateCallDuration($call));
 
