@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.2",
-        "samuelbednarcik/elastic-apm-agent": "dev-master",
+        "samuelbednarcik/elastic-apm-agent": "^0.2.1",
         "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
