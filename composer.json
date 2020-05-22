@@ -24,5 +24,6 @@
     },
     "scripts": {
       "phpstan": "phpstan analyse src --level 7"
-    }
+    },
+    "abandoned": "philkra/elastic-apm-php-agent"
 }
